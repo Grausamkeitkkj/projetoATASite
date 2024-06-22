@@ -7,7 +7,9 @@
         <!-- TITLE -->
         <title>ATA Martial Arts Viamão</title>
         <!-- ESTILOS -->
-        <link rel="shortcut icon" sizes="16x16" href="ATA.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="imagens/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon-16x16.png">
         <link rel="stylesheet" type="text/css" href="style.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         <!-- SCRIPT -->
@@ -18,7 +20,9 @@
         <section class="navigation">
             <div class="nav-container">
                 <div class="brand">
-                    <a href="#">Logo</a>
+                    <a href="index.html">
+                        <img class="ATA-LOGO" src="imagens/ATA.jpg">
+                    </a>
                 </div>
                 <nav>
                     <div class="nav-mobile">
@@ -67,7 +71,7 @@
                 <input class="form-input-cadastro" type="text" placeholder="Nome Completo" id="nome" name="nome" required>
                 <input class="form-input-cadastro" type="text" placeholder="Data de Nascimento" id="data_nascimento" name="data_nascimento">
                 <label class="form-label-cadastro" for="genero">Gênero:</label>
-                <select class="form-select-cadastro" name="faixa">
+                <select class="form-select-cadastro" name="genero">
                   <option value="">Selecione</option>
                   <option value="1">Masculino</option>
                   <option value="2">Feminino</option>
@@ -102,11 +106,10 @@
                 <option value="20">Preta</option>
               </select>
                 <h3 class="titulo-form">Informações Médicas</h3>
-                <input class="form-input-cadastro" placeholder="Condições Médicas" type="text" name="condicoes_medicas">
-                <input class="form-input-cadastro" placeholder="Alergias" type="text" name="alergias">
-                <input class="form-input-cadastro" placeholder="Medicações" type="text" name="medicacoes">
-                <input class="form-input-cadastro" placeholder="Histórico de Lesões" type="text" name="historico_lesoes">
-                <input class="form-input-cadastro" placeholder="Avaliação Médica" type="text" name="avaliacao_medica" >
+                <input class="form-input-cadastro" type="text" placeholder="Alergias" id="alergias" name="alergias">
+                <input class="form-input-cadastro" type="text" placeholder="Medicações" id="medicacoes" name="medicacoes">
+                <input class="form-input-cadastro" type="text" placeholder="Histórico de Lesões" id="historico_lesoes" name="historico_lesoes">
+                <input class="form-input-cadastro" type="text" placeholder="Avaliação Médica" id="avaliacao_medica" name="avaliacao_medica" >
                 <button class="form-button-cadastro">Cadastrar</button>
             </form>
         </article>
@@ -116,7 +119,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
         <script>
             $('#cpf').mask('000.000.000-00', {reverse: true});
-            $('#telefone').mask('(00) 0000-0000');
+            $('#telefone').mask('(00) 00000-0000');
             $('#telefone_emergencia').mask('(00) 00000-0000');
             $('#data_nascimento').mask('00/00/0000');
         </script>
