@@ -66,7 +66,7 @@
         <!-- Fim - NavBar -->
         <article class="article-cadastro">
             <h2 class="form-cadastro-titulo">Cadastro Aluno</h2>
-            <form class="form-cadastro" action="http://localhost:3003/aluno" method="post">
+            <form class="form-cadastro" id="form_cadastro" action="http://localhost:3003/aluno" method="post">
                 <h3 class="titulo-form">Informações Pessoais</h3>
                 <input class="form-input-cadastro" type="text" placeholder="Nome Completo" id="nome" name="nome" required>
                 <input class="form-input-cadastro" type="text" placeholder="Data de Nascimento" id="data_nascimento" name="data_nascimento">
@@ -110,7 +110,7 @@
                 <input class="form-input-cadastro" type="text" placeholder="Medicações" id="medicacoes" name="medicacoes">
                 <input class="form-input-cadastro" type="text" placeholder="Histórico de Lesões" id="historico_lesoes" name="historico_lesoes">
                 <input class="form-input-cadastro" type="text" placeholder="Avaliação Médica" id="avaliacao_medica" name="avaliacao_medica" >
-                <button class="form-button-cadastro">Cadastrar</button>
+                <button class="form-button-cadastro" type="submit">Cadastrar</button>
             </form>
         </article>
         <!-- SCRIPT -->
@@ -118,10 +118,35 @@
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
         <script>
+            document.getElementById('form-cadastro').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+
+                fetch(this.action, {
+                    method: 'POST', 
+                    body: formData,
+                }).then(response => {
+                    console.log(response.status);
+                    if (response.ok) {
+                        // Se os dados foram salvos com sucesso
+                        alert('Dados salvos com sucesso!');
+                    } else {
+                        // Se houve um erro ao salvar os dados 
+                        response.text().then(text => alert('Houve um erro ao salvar os dados: ' + text));
+                    }
+                })
+                .catch(error => {
+                    // Em caso de erro na requisição
+                    console.error('Erro na requisição:', error);
+                    alert('Erro ao tentar salvar os dados: ' + error.message);
+                });
+            });
+                        
             $('#cpf').mask('000.000.000-00', {reverse: true});
             $('#telefone').mask('(00) 00000-0000');
             $('#telefone_emergencia').mask('(00) 00000-0000');
-            $('#data_nascimento').mask('00/00/0000');
+            //$('#data_nascimento').mask('00/00/0000');
         </script>
     </body>
 </html>

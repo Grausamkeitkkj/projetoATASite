@@ -1,6 +1,9 @@
+const cors = require('cors');
 const express = require('express');
+const pool = require('./db');
+
 const app = express();
-const pool = require('./db'); // Importe a conexão
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -11,13 +14,11 @@ app.post('/aluno', (req, res) => {
   INSERT INTO aluno (nome, data_nascimento, genero, cpf, rg, telefone, nome_pais_responsaveis, telefone_emergencia, faixa, condicoes_medicas, alergias, medicacoes, historico_lesoes, avaliacao_medica)
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);`;
 
-  pool.query(query, [nome, data_nascimento, genero, cpf, rg, telefone, nome_pais_responsaveis, telefone_emergencia, faixa, condicoes_medicas, alergias, medicacoes, historico_lesoes, avaliacao_medica], (err, result) => {
+  pool.query(query, [nome, data_nascimento, genero, cpf, rg, telefone, nome_pais_responsaveis, telefone_emergencia, faixa, condicoes_medicas, alergias, medicacoes, historico_lesoes, avaliacao_medica], (err) => {
     if (err) {
-      console.error('Erro ao inserir dados:', err);
-      res.status(500).send('Erro ao inserir dados no banco de dados.');
+      res.status(500).send('Erro ao salvar os dados: ' + err.message);
     } else {
-      console.log('Dados inseridos com sucesso!');
-      res.status(200).send('Dados inseridos com sucesso!');
+      res.status(200);
     }
   });
 });
